@@ -48,9 +48,36 @@
 				</div>
 				
 				<div class="col-auto">
-					<?php if ( is_active_sidebar( 'redes_sociais' ) ) : ?>                            
+					<?php 
+						$linkedin = get_field('options_linkedin', 'option');
+						$facebook = get_field('options_facebook', 'option');
+						$instagram = get_field('options_instagram', 'option');
+					?>
+					<?php if ( $linkedin != "" && $facebook != "" && $instagram != "") : ?>                            
 						<ul class="social">
-							<?php dynamic_sidebar( 'redes_sociais' ); ?>
+							<?php if ( $linkedin != "") : ?>
+								<li class="social-item">
+									<a href="<?php echo $linkedin; ?>" target="_blank" rel="noopener">
+										<img src="<?php echo get_template_directory_uri() . '/assets/images/icon-linkedin.svg'; ?>" alt="Linkedin" />
+									</a>
+								</li>
+							<?php endif; ?>
+
+							<?php if ( $facebook != "") : ?>
+								<li class="social-item">
+									<a href="<?php echo $facebook; ?>" target="_blank" rel="noopener">
+										<img src="<?php echo get_template_directory_uri() . '/assets/images/icon-facebook.svg'; ?>" alt="facebook" />
+									</a>
+								</li>
+							<?php endif; ?>
+
+							<?php if ( $instagram != "") : ?>
+								<li class="social-item">
+									<a href="<?php echo $instagram; ?>" target="_blank" rel="noopener">
+										<img src="<?php echo get_template_directory_uri() . '/assets/images/icon-instagram.svg'; ?>" alt="instagram" />
+									</a>
+								</li>
+							<?php endif; ?>							
 						</ul>
 					<?php endif; ?>
 				</div>
@@ -68,7 +95,21 @@
 				</form>
 
 				<div class="col-auto">
-					<?php do_action('wpml_add_language_selector'); ?>
+					<div class="d-flex align-items-center justify-content-start language">
+						<?php if($language != 'en'): ?>
+							<a class="d-flex align-items-center justify-content-start" href="<?php echo $_SERVER['REMOTE_HOST'] . $_SERVER['PATH_INFO'] . '/en' ?>">
+								<img class="me-1" src="<?php echo get_template_directory_uri() . '/assets/images/icon-usa.png'; ?>" />
+								<span>English</span>
+							</a>
+						<?php else: ?>
+							<?php $current_url = $_SERVER['REMOTE_HOST'] . $_SERVER['PATH_INFO']; ?>
+							<?php $new_url = rtrim(str_replace('/en', '', $current_url), '/'); ?>
+							<a class="d-flex align-items-center justify-content-start" href="<?php echo $new_url == "" ? "/" : $new_url; ?>">
+								<img class="me-1" src="<?php echo get_template_directory_uri() . '/assets/images/icon-brazil.png'; ?>" />
+								<span>Português</span>
+							</a>
+						<?php endif; ?>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -118,15 +159,54 @@
 				</div>
 
 				<div class="col-auto">
-					<?php if ( is_active_sidebar( 'redes_sociais' ) ) : ?>                            
+					<?php 
+						$linkedin = get_field('options_linkedin', 'option');
+						$facebook = get_field('options_facebook', 'option');
+						$instagram = get_field('options_instagram', 'option');
+					?>
+					<?php if ( $linkedin != "" && $facebook != "" && $instagram != "") : ?>                            
 						<ul class="social">
-							<?php dynamic_sidebar( 'redes_sociais' ); ?>
+							<?php if ( $linkedin != "") : ?>
+								<li class="social-item">
+									<a href="<?php echo $linkedin; ?>" target="_blank" rel="noopener">
+										<img src="<?php echo get_template_directory_uri() . '/assets/images/icon-linkedin.svg'; ?>" alt="Linkedin" />
+									</a>
+								</li>
+							<?php endif; ?>
+
+							<?php if ( $facebook != "") : ?>
+								<li class="social-item">
+									<a href="<?php echo $facebook; ?>" target="_blank" rel="noopener">
+										<img src="<?php echo get_template_directory_uri() . '/assets/images/icon-facebook.svg'; ?>" alt="facebook" />
+									</a>
+								</li>
+							<?php endif; ?>
+
+							<?php if ( $instagram != "") : ?>
+								<li class="social-item">
+									<a href="<?php echo $instagram; ?>" target="_blank" rel="noopener">
+										<img src="<?php echo get_template_directory_uri() . '/assets/images/icon-instagram.svg'; ?>" alt="instagram" />
+									</a>
+								</li>
+							<?php endif; ?>							
 						</ul>
 					<?php endif; ?>
 				</div>
 
 				<div class="col-auto">
-					<?php do_action('wpml_add_language_selector'); ?>
+					<div class="d-flex align-items-center justify-content-start language">
+						<?php if($language != 'en'): ?>
+							<a class="d-flex align-items-center justify-content-start" href="<?php echo $_SERVER['REMOTE_HOST'] . $_SERVER['PATH_INFO'] . '/en' ?>">
+								<img class="me-1" src="<?php echo get_template_directory_uri() . '/assets/images/icon-usa.png'; ?>" />
+							</a>
+						<?php else: ?>
+							<?php $current_url = $_SERVER['REMOTE_HOST'] . $_SERVER['PATH_INFO']; ?>
+							<?php $new_url = rtrim(str_replace('/en', '', $current_url), '/'); ?>
+							<a class="d-flex align-items-center justify-content-start" href="<?php echo $new_url == "" ? "/" : $new_url; ?>">
+								<img class="me-1" src="<?php echo get_template_directory_uri() . '/assets/images/icon-brazil.png'; ?>" />
+							</a>
+						<?php endif; ?>
+					</div>
 				</div>
 			</div>
 		</div>

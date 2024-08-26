@@ -3,15 +3,15 @@
     <div class="container">
       <div class="row py-4">
         <div class="col-12 col-lg">
-          <?php if ( is_active_sidebar( 'image_footer' ) ) : ?>                            
-            <?php dynamic_sidebar( 'image_footer' ); ?>
-          <?php endif; ?>
+        <a class="d-block text-center text-lg-start" href="<?= get_option('home') ?>">
+          <img src="<?php echo get_template_directory_uri() . '/assets/images/logo-rodape.png'; ?>" />
+        </a>
         </div>
 
         <div class="col-12 col-lg">
-          <?php if ( is_active_sidebar( 'address_footer' ) ) : ?>                            
-            <?php dynamic_sidebar( 'address_footer' ); ?>
-          <?php endif; ?>
+        <div class="addrress m-auto m-lg-none text-center text-lg-start">
+            <?php echo get_field('options_address', 'option'); ?>
+        </div>
         </div>
 
         <div class="col-12 col-lg mt-4 mt-lg-0">
@@ -58,12 +58,39 @@
 
         <div class="col-12 col-lg mt-4 mt-lg-0">
           <div class="h3 text-center text-lg-start"><?php if($language == 'en'): ?>Social Networks<?php else: ?>Redes Sociais<?php endif; ?></div>
-          
-          <?php if ( is_active_sidebar( 'redes_sociais' ) ) : ?>                            
-            <ul class="social justify-content-center justify-content-lg-start mt-3 mt-lg-0">
-              <?php dynamic_sidebar( 'redes_sociais' ); ?>
-            </ul>
-          <?php endif; ?>
+
+          <?php 
+						$linkedin = get_field('options_linkedin', 'option');
+						$facebook = get_field('options_facebook', 'option');
+						$instagram = get_field('options_instagram', 'option');
+					?>
+					<?php if ( $linkedin != "" && $facebook != "" && $instagram != "") : ?>                            
+						<ul class="social justify-content-center justify-content-lg-start mt-3 mt-lg-0">
+							<?php if ( $linkedin != "") : ?>
+								<li class="social-item">
+									<a href="<?php echo $linkedin; ?>" target="_blank" rel="noopener">
+										<img src="<?php echo get_template_directory_uri() . '/assets/images/icon-linkedin.svg'; ?>" alt="Linkedin" />
+									</a>
+								</li>
+							<?php endif; ?>
+
+							<?php if ( $facebook != "") : ?>
+								<li class="social-item">
+									<a href="<?php echo $facebook; ?>" target="_blank" rel="noopener">
+										<img src="<?php echo get_template_directory_uri() . '/assets/images/icon-facebook.svg'; ?>" alt="facebook" />
+									</a>
+								</li>
+							<?php endif; ?>
+
+							<?php if ( $instagram != "") : ?>
+								<li class="social-item">
+									<a href="<?php echo $instagram; ?>" target="_blank" rel="noopener">
+										<img src="<?php echo get_template_directory_uri() . '/assets/images/icon-instagram.svg'; ?>" alt="instagram" />
+									</a>
+								</li>
+							<?php endif; ?>							
+						</ul>
+					<?php endif; ?>
         </div>
       </div>
     </div>

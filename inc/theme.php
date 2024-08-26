@@ -15,7 +15,6 @@ class Theme {
         add_filter('upload_mimes', array($this, 'cc_mime_types'));
         add_filter('wp_check_filetype_and_ext', array($this, 'check_filetype_and_ext'), 10, 5);
         add_filter('get_the_archive_title', array($this, 'customize_archive_title' ), 10, 3);
-        add_filter('upload_mimes', array($this, 'allow_vcf_upload'), 10, 3);
 
         // Includes
         $this->cpts = get_template_directory() . '/' . 'inc/cpts/';
@@ -84,6 +83,7 @@ class Theme {
 
     public function cc_mime_types( $mimes ){
         $mimes['svg'] = 'image/svg+xml';
+        $mimes['vcf'] = 'text/x-vcard';
         return $mimes;
     }
 
@@ -114,11 +114,6 @@ class Theme {
         }
 
         return $title;
-    }
-
-    public function allow_vcf_upload($mime_types){
-        $mime_types['vcf'] = 'text/x-vcard';
-        return $mime_types;
     }
 }
 

@@ -1,8 +1,6 @@
 <?php get_header();?>
 <?php $language = apply_filters( 'wpml_current_language', NULL ); ?>
 
-
-
 <?php
     $args = array(
         'post_type' => 'banners',
@@ -83,5 +81,45 @@
     </section>
 <?php endif;?>
 <?php wp_reset_postdata(); ?>
+
+<div id="find-us" class="mt-3 mt-lg-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="sub-title"><?php if($language == 'en') : ?>How to find us<?php else: ?>Onde nos encontrar<?php endif; ?></h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                <?php echo  get_field('options_maps', 'option'); ?>
+            </div>
+
+            <div class="col-12 col-lg-3 mb-3 mb-lg-0">
+                <div class="newsletter">
+                    <h3 class="newsletter__title">
+                        <img class="icon" src="<?=  get_template_directory_uri() . '/assets/images/OBJECTS.png'?>" />
+                        <span class="text"><?php if($language == 'en') : ?>Subscribe to our newsletter<?php else: ?>Assine nossa newsletter<?php endif; ?></span>
+                    </h3>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-3">
+                <div class="contact-us">
+                    <h3 class="contact-us__title">
+                        <img class="icon" src="<?=  get_template_directory_uri() . '/assets/images/OBJECTS-PHONE.png'?>" />
+                        <span class="text"><?php if($language == 'en') : ?>Contact Us<?php else: ?>Fale Conosco<?php endif; ?></span>
+                    </h3>
+
+                    <div class="contact-us__content">
+                        <p><?php if($language == 'en') : ?>Phone<?php else: ?>Tel.<?php endif; ?>: <span><?php echo get_field('options_phone', 'option'); ?></span></p>
+                        <p><?php if($language == 'en') : ?>Opening Hours<?php else: ?>Horário de funcionamento<?php endif; ?></p>
+                        <p><?php echo get_field('options_hour', 'option'); ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php get_footer();?>

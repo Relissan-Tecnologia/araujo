@@ -19,7 +19,7 @@
                     <div class="container-fluid ">
                         <div class="row">
                             <div class="col-12">
-                                <h2>Áreas de Atuação</h2>
+                                <h2><?php if($language == 'en') : ?>Expertise<?php else: ?>Área de Atuação<?php endif; ?></h2>
                             </div>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                     <div class="container-fluid ">
                         <div class="row">
                             <div class="col-12">
-                                <h3>Advogados que atuam nesta área:</h3>
+                                <h3><?php if($language == 'en') : ?>Lawyers working in this area<?php else: ?>Advogados que atuam nessa área:<?php endif; ?></h3>
                             </div>
                         </div>
                     </div>
@@ -133,7 +133,7 @@
         <section id="recent-posts" class="container border-top border-1 pt-4 pt-4">
             <div class="row">
                 <div class="col-12">
-                    <h3>Últimas publicações</h3>
+                    <h3><?php if($language == 'en') : ?>Last posts<?php else: ?>Últimas publicações<?php endif; ?></h3>
                     <div class="container-fluid mt-4 mb-4">
                         <div class="row recent-posts">
                             <?php while ($recent_posts->have_posts()): $recent_posts->the_post();?>

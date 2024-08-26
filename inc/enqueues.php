@@ -56,17 +56,22 @@ if( !class_exists('Enqueue') ) :
             // Default Files
             wp_enqueue_script('product', $this->scripts . 'slides.js', array('carousel', 'fancybox'), '1.0', true);
     
-            if (is_single()) {
+            if (is_single()) :
 
                 if (!wp_script_is('jquery', 'enqueued')) {
                     wp_enqueue_script('jquery');
                 }
                 wp_enqueue_script('slick', $this->scripts . 'slick.min.js', '', '1.0', true);
                 wp_enqueue_script('script-single-js', $this->scripts . 'script-single.js', array('slick'), null, true);
-            }
+            endif;
 
             if(is_archive('equipe')) :
                 wp_enqueue_script('script-lawyers', $this->scripts . 'script-lawyers.js', '', '1.0', true);
+            endif;
+
+            if(is_page_template('page-publications.php')) :
+                wp_enqueue_script('glide', '//cdn.jsdelivr.net/npm/@glidejs/glide', array(), '1.1', true);
+                wp_enqueue_script('script-home', $this->scripts . 'script-home.js', '', '1.1', true);
             endif;
         }
     }

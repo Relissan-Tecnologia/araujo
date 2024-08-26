@@ -4,20 +4,88 @@
     */
 ?>
 <?php get_header(); ?>
+<?php $language = apply_filters( 'wpml_current_language', NULL ); ?>
 
 <?php
+    $excluded = [];
+
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
     $args = array(
         'post_type' => 'post',
-        'paged' => $paged,
+        'posts_per_page' => -1,
+        'paged' => 1,
     );
-
-    $publicacoes_query = new WP_Query($args);
-    $title = 'Últimas Publicações';
+    $banners = new WP_Query($args);
 ?>
 
-<?php if ($publicacoes_query->have_posts()): ?>
+<?php if ($paged == 1 && $banners->have_posts()): ?>
+
+    <section id="banner-publications" class="container-fluid mb-3">
+        <div class="glide">
+            <div class="glide__track" data-glide-el="track">
+                <ul class="glide__slides">
+                <?php if (have_rows('publicacoes')) : ?>
+                    <?php while (have_rows('publicacoes')) : the_row(); ?>
+                        <li class="glide__slide banner">
+                            <?php 
+                                $desktop = get_sub_field('banner_desktop');
+                                $mobile = get_sub_field('banner_mobile');
+                                $banner_content = get_sub_field('banner_content');
+                                $publication = get_sub_field('selecione_a_publicacao');
+                                $excluded[] = $publication;
+                            ?>
+                            <img class="banner-image banner-desktop" alt="<?php echo esc_attr($desktop['alt']); ?>" src="<?php echo esc_url($desktop['url']); ?>" />
+                            <img class="banner-image banner-mobile" alt="<?php echo esc_attr($mobile['alt']); ?>" src="<?php echo esc_url($mobile['url']); ?>" />
+                            <div class="banner-content">
+                                <?php 
+                                    if($banner_content != ''):
+                                        echo $banner_content;
+                                    else:
+                                        echo '<p>'.get_the_title($publication).'</p>';
+                                    endif;
+
+                                    echo '<a href="'.get_the_permalink($publication).'">';
+                                    echo $language == 'en' ? 'See more' : 'Saiba mais';
+                                    echo '</a>';
+                                ?>
+
+                            </div>
+                        </li>
+                    <?php endwhile; ?>
+                <?php endif; ?>
+                </ul>
+            </div>
+
+            <div class="glide__bullets separator" data-glide-el="controls[nav]">
+                <?php if (have_rows('publicacoes')) : ?>
+                    <?php $bullets = 0; ?>
+                    <?php while (have_rows('publicacoes')) : the_row(); ?>
+                        <button class="glide__bullet" data-glide-dir="=<?php echo $bullets; ?>"></button>
+                        <?php $bullets++; ?>
+                    <?php endwhile; ?>
+                <?php endif; ?>
+            </div>
+        </div>
+    </section>
+
+<?php endif;?>
+<?php wp_reset_postdata(); ?>
+
+<?php
+
+    $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => 30,
+        'paged' => $paged,
+        'post__not_in'   => $paged == 1 ? $excluded : []
+    );
+
+    $publications_query = new WP_Query($args);
+    $title = $language == 'en' ? 'Latest Posts' : 'Últimas Publicações';
+?>
+
+<?php if ($publications_query->have_posts()): ?>
 
     <div class="container">
         
@@ -29,7 +97,7 @@
                 
                 <div class="archive-posts">
 
-                    <?php while ($publicacoes_query->have_posts()): $publicacoes_query->the_post(); ?>
+                    <?php while ($publications_query->have_posts()): $publications_query->the_post(); ?>
                         <div class="card-post">
                             <a href="<?= get_permalink(); ?>">
                                 <?php if (has_post_thumbnail()): ?>
@@ -58,7 +126,7 @@
                         echo paginate_links(
                             array(
                                 'base' => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
-                                'total' => $publicacoes_query->max_num_pages,
+                                'total' => $publications_query->max_num_pages,
                                 'current' => max(1, get_query_var('paged')),
                                 'format' => '?paged=%#%',
                                 'show_all' => false,

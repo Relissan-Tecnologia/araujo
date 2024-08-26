@@ -42,6 +42,74 @@
 <?php wp_reset_postdata(); ?>
 
 <?php
+
+    $args_query = array(
+        'post_type' => 'post',
+        'posts_per_page' => 4,
+        'paged' => $paged
+    );
+
+    $publications_query = new WP_Query($args_query);
+    $title = $language == 'en' ? 'Latest Posts' : 'Últimas Publicações';
+    $see_more = $language == 'en' ? 'See all Publications' : 'Veja todas as Publicações';
+    $text_link_more = $language == 'en' ? 'Clicking here' : 'Clicando aqui';
+    $publications_link = $language == 'en' ? '/publications' : '/publicacoes';
+
+?>
+
+<?php if ( $publications_query->have_posts() ): ?>
+    <div id="posts" class="mb-4">
+        <div class="container" style="overflow: hidden;">
+            <div class="row">
+                <div class="col-12">
+                    <div id="block-title-slider">
+
+                        <h2 class="sub-title mb-4"><?= $title; ?></h2>
+
+                        <div id="post-carousel" class="posts f-carousel">
+                            <?php while ( $publications_query->have_posts() ) : $publications_query->the_post(); ?>
+                                <div class="f-carousel__slide">
+                                    <a href="<?= get_permalink(); ?>" class="post">
+                                        <?php if( has_post_thumbnail() ): ?>
+                                            <img src="<?= get_the_post_thumbnail_url(); ?>" alt="<?= get_the_title(); ?>" class="post__image">
+                                        <?php else: ?>
+                                            <img src="<?= get_template_directory_uri() . '/assets/images/default.webp'; ?>" alt="<?= get_the_title(); ?>" class="post__image">
+                                        <?php endif; ?>
+
+                                        <div class="post__content">
+                                            <div class="execpt">
+                                                <?= get_the_excerpt(); ?>
+                                            </div>
+                                            <div class="date"><?= get_the_date( 'd/m/Y' ); ?></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            <?php endwhile; ?>
+                            
+                            <div class="f-carousel__slide post-publications-more">
+                                <a href="<?= $publications_link; ?>" class="post">
+                                    
+                                    <div class="see-more">
+                                        <span><?= $see_more ?></span>
+                                    </div>
+
+                                    <div class="link-more">
+                                        <span><?= $text_link_more ?></span>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif;?>
+<?php wp_reset_postdata(); ?>
+
+
+<?php
     $args = array(
         'post_type' => 'area-de-atuacao',
         'post_status' => 'publish',

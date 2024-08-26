@@ -1,9 +1,13 @@
 <?php get_header(); ?>
 
+<?php $language = apply_filters( 'wpml_current_language', NULL ); ?>
+
 <?php
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
     $search_query = get_search_query();
-    $title = 'Resultados da pesquisa para: ' . $search_query;
+    $title_lang = $language == 'en' ? 'Search results for: ' : 'Resultados da pesquisa para: ';
+    
+    $title = $title_lang . $search_query;
 ?>
 
 <?php if (have_posts()): ?>

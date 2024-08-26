@@ -5,8 +5,9 @@ const options = {
   center: false,
   Navigation: false,
   slidesPerPage: "auto",
+  infinite: false,
   breakpoints: {
-      "(max-width: 992px)": {
+      "(max-width: 1199px)": {
           enabled: true,
       },
   },

@@ -8,7 +8,11 @@
             'hide_empty' => false,
         );
         $terms = get_terms( $args );
-        $active_term = isset($_GET['cargo']) ? $_GET['cargo'] : 'socios';
+        if($language == 'en'):
+            $active_term = isset($_GET['cargo']) ? $_GET['cargo'] : 'partners';
+        else:
+            $active_term = isset($_GET['cargo']) ? $_GET['cargo'] : 'socios';
+        endif;
     ?>
 
     <section id="lawyers-types" class="content container mt-4 mb-4">

@@ -42,6 +42,30 @@
 <?php wp_reset_postdata(); ?>
 
 <?php
+    $args = array(
+        'post_type' => 'links',
+        'post_status' => 'publish',
+        'posts_per_page' => 7
+    );
+    $links = new WP_Query($args);
+?>
+
+<?php if ($links->have_posts()): ?>
+<section id="external-links" class="container-fluid mb-4">
+    <div class="row">
+        <div class="col-12 pt-4 pb-4 d-flex justify-content-flex-start justify-content-lg-center align-items-center">
+            <?php while ($links->have_posts()): $links->the_post(); ?>
+                <a target="_blank" href="<?php echo get_field('external_link', get_the_ID()); ?>">
+                    <img src="<?php echo get_the_post_thumbnail_url(); ?>" />
+                </a>
+            <?php endwhile;?>
+        </div>
+    </div>
+</section>
+<?php endif;?>
+<?php wp_reset_postdata(); ?>
+
+<?php
 
     $args_query = array(
         'post_type' => 'post',
@@ -150,6 +174,38 @@
 <?php endif;?>
 <?php wp_reset_postdata(); ?>
 
+
+
+<section id="about-us" class="container-fluid pt-4 pb-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="sub-title"><?php if($language == 'en') : ?>More about us<?php else: ?>Mais sobre nós<?php endif; ?></h2>
+            </div>
+        </div>
+
+        <div class="row about d-flex justify-content-flex-start justify-content-lg-center align-items-center">
+            <a class="about-item" href="<?php if($language == 'en') : ?>/quem-somos/en<?php else: ?>/quem-somos<?php endif; ?>">
+                <div style="background-image: url(<?php echo get_template_directory_uri() . '/assets/images/quem-somos.png'; ?>)">
+                    <h3><?php if($language == 'en') : ?>About Us<?php else: ?>Quem Somos<?php endif; ?></h3>
+                </div>
+            </a>
+
+            <a class="about-item" href="<?php if($language == 'en') : ?>/equipe/en<?php else: ?>/equipe<?php endif; ?>">
+                <div style="background-image: url(<?php echo get_template_directory_uri() . '/assets/images/equipe.png'; ?>)">
+                    <h3><?php if($language == 'en') : ?>Team<?php else: ?>Equipe<?php endif; ?></h3>
+                </div>
+            </a>
+            
+            <a class="about-item" href="#">
+                <div style="background-image: url(<?php echo get_template_directory_uri() . '/assets/images/eventos.png'; ?>)">
+                    <h3><?php if($language == 'en') : ?>Events<?php else: ?>Eventos<?php endif; ?></h3>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
 <div id="find-us" class="mt-3 mt-lg-0">
     <div class="container">
         <div class="row">
@@ -163,7 +219,7 @@
                 <?php echo  get_field('options_maps', 'option'); ?>
             </div>
 
-            <div class="col-12 col-lg-3 mb-3 mb-lg-0">
+            <div class="d-none col-12 col-lg-3 mb-3 mb-lg-0">
                 <div class="newsletter">
                     <h3 class="newsletter__title">
                         <img class="icon" src="<?=  get_template_directory_uri() . '/assets/images/OBJECTS.png'?>" />

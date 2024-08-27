@@ -1,0 +1,21 @@
+#external-links{
+    background-color: #DCD7B3;
+    position: relative;
+    top: -20px;
+
+    div{
+        div{
+            gap: 10px;
+            overflow-x: scroll;
+
+            @media (min-width: 1024px) {
+                overflow-x: auto;
+
+                img{
+                    max-width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+}

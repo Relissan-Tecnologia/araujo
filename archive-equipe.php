@@ -27,7 +27,7 @@
                                     <?php $title = get_field('term_title', 'term_'.$term->term_id); ?>
                                     <?php $icon = get_field('term_icon', 'term_'.$term->term_id); ?>
                                     <?php $icon_white = get_field('term_icon_hover', 'term_'.$term->term_id); ?>
-                                    <a href="/equipe?cargo=<?php echo $term->slug ?>">
+                                    <a href="<?php if($language == 'en') : ?>/en<?php endif; ?>/equipe?cargo=<?php echo $term->slug ?>">
                                         <div class="p-3 rounded-2 d-flex align-items-center justify-content-center flex-strech flex-column lawyers-type-list-item <?php echo $active_class; ?>">
                                             <img class="lawyers-type-list-item-icon" src="<?php echo $icon ?>" />
                                             <img class="lawyers-type-list-item-icon-hover" src="<?php echo $icon_white ?>" />

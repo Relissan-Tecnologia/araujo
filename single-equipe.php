@@ -25,14 +25,14 @@
                 $vcard = get_field('team_vcard', get_the_ID());
                 $curriculum = get_field('team_curriculum', get_the_ID());
 
-                $args = array(
-                    'taxonomy'   => 'cargos',
-                );
-                $terms = get_terms( $args );
+                $terms = get_the_terms(get_the_ID(), 'cargos');
 
-                foreach($terms as $term):
-                    $role = $term->name;
-                endforeach;
+                if ($terms && !is_wp_error($terms)):
+                    foreach($terms as $term):
+                        $role = $term->name;
+                        break;
+                    endforeach;
+                endif;
 
             endwhile;
         endif;    

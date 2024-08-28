@@ -8,6 +8,22 @@
             'hide_empty' => false,
         );
         $terms = get_terms( $args );
+
+        if($language == 'en'):
+            $desired_order = array('partners', 'associates', 'trainees');
+            $default_term = 'partners';
+        else:
+            $desired_order = array('socios', 'associados', 'estagiarios');
+            $default_term = 'socios';
+        endif;
+
+        usort($terms, function($a, $b) use ($desired_order) {
+            $pos_a = array_search($a->slug, $desired_order);
+            $pos_b = array_search($b->slug, $desired_order);
+            return $pos_a - $pos_b;
+        });
+
+
         if($language == 'en'):
             $active_term = isset($_GET['cargo']) ? $_GET['cargo'] : 'partners';
         else:
@@ -118,15 +134,17 @@
                                         <div class="lawyers-item-icons">
                                             <?php $vcard = get_field('team_vcard', get_the_ID()); ?>
                                             <?php if($vcard != "") : ?>
-                                                <div class="lawyers-item-icons-vcard" data-bs-toggle="modal" data-bs-target="#vcardModal" data-vcard="<?php echo $vcard ?>">
-                                                    <img src="<?php echo get_template_directory_uri() . '/assets/images/icon-v-card.png'; ?>">
-                                                    <span>VCard</span>
-                                                </div>
+                                                <a download="download" href="<?php echo $vcard; ?>">
+                                                    <div class="lawyers-item-icons-vcard">
+                                                        <img src="<?php echo get_template_directory_uri() . '/assets/images/icon-v-card.png'; ?>">
+                                                        <span>VCard</span>
+                                                    </div>
+                                                </a>
                                             <?php endif;?>
                                             <a href="<?php echo get_the_permalink(); ?>">
                                                 <div class="lawyers-item-icons-profile">
                                                     <img src="<?php echo get_template_directory_uri() . '/assets/images/icon-doc.png'; ?>">
-                                                    <span><?php if($language == 'en') : ?>See profile<?php else: ?>Ver perfil<?php endif; ?></span>
+                                                    <span><?php if($language == 'en') : ?>Profile<?php else: ?>Ver perfil<?php endif; ?></span>
                                                 </div>
                                             </a>
                                         </div>
@@ -139,32 +157,6 @@
             </div>
         </section>
     <?php endif;?>
-    <?php wp_reset_postdata(); ?>
-
-    <!-- Modal -->
-    <div class="modal fade" id="vcardModal" tabindex="-1" aria-labelledby="vcardModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="vcardModalLabel">V-Card</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body d-flex flex-column align-items-center justify-content-center">
-                    <img id="vcard-general" src="" />
-                    <p class="mt-4">
-                        <?php if($language == 'en') : ?>
-                            Read QR Code to get vcard data
-                        <?php else: ?>
-                            Leia o QR Code para ver os dados do VCard
-                        <?php endif; ?>
-                    </p>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php if($language == 'en') : ?>Close<?php else: ?>Fechar<?php endif; ?></button>
-                </div>
-            </div>
-        </div>
-    </div>    
+    <?php wp_reset_postdata(); ?> 
 
 <?php get_footer();?>

@@ -1,1 +1,1 @@
-window.addEventListener("load",e=>{document.getElementById("vcardModal").addEventListener("show.bs.modal",e=>{console.log(e.relatedTarget),console.log(e.relatedTarget.dataset.vcard),document.getElementById("vcard-general").src=e.relatedTarget.dataset.vcard})});
+window.addEventListener("load",d=>{});

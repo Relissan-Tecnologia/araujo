@@ -187,19 +187,19 @@
         <div class="row about d-flex justify-content-flex-start justify-content-lg-center align-items-center">
             <a class="about-item" href="<?php if($language == 'en') : ?>/quem-somos/en<?php else: ?>/quem-somos<?php endif; ?>">
                 <div style="background-image: url(<?php echo get_template_directory_uri() . '/assets/images/quem-somos.png'; ?>)">
-                    <h3><?php if($language == 'en') : ?>About Us<?php else: ?>Quem Somos<?php endif; ?></h3>
+                    <h3><?php if($language == 'en') : ?>ABOUT US<?php else: ?>QUEM SOMOS<?php endif; ?></h3>
                 </div>
             </a>
 
             <a class="about-item" href="<?php if($language == 'en') : ?>/equipe/en<?php else: ?>/equipe<?php endif; ?>">
                 <div style="background-image: url(<?php echo get_template_directory_uri() . '/assets/images/equipe.png'; ?>)">
-                    <h3><?php if($language == 'en') : ?>Team<?php else: ?>Equipe<?php endif; ?></h3>
+                    <h3><?php if($language == 'en') : ?>TEAM<?php else: ?>EQUIPE<?php endif; ?></h3>
                 </div>
             </a>
             
             <a class="about-item" href="#">
                 <div style="background-image: url(<?php echo get_template_directory_uri() . '/assets/images/eventos.png'; ?>)">
-                    <h3><?php if($language == 'en') : ?>Events<?php else: ?>Eventos<?php endif; ?></h3>
+                    <h3><?php if($language == 'en') : ?>EVENTS<?php else: ?>EVENTOS<?php endif; ?></h3>
                 </div>
             </a>
         </div>

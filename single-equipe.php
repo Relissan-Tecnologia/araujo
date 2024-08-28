@@ -84,9 +84,9 @@
                                 </div>
                                 <div class="lawyer-item-data-icons">
                                     <?php if( $vcard != "") : ?>
-                                        <div class="lawyer-item-icons-vcard" data-bs-toggle="modal" data-bs-target="#vcardModal">
+                                        <div class="lawyer-item-icons-vcard">
                                             <img src="<?php echo get_template_directory_uri() . '/assets/images/icon-v-card.png'; ?>">
-                                            <a class="open-vcard" href="#"><span>VCard</span></a>
+                                            <a class="open-vcard" download="download" href="<?php echo $vcard ?>"><span>VCard</span></a>
                                         </div>
                                     <?php endif; ?>
                                     
@@ -100,31 +100,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="vcardModal" tabindex="-1" aria-labelledby="vcardModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="vcardModalLabel">V-Card</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body d-flex flex-column align-items-center justify-content-center">
-                    <img src="<?php echo $vcard ?>" />
-                    <p class="mt-4">
-                        <?php if($language == 'en') : ?>
-                            Read QR Code to get vcard data
-                        <?php else: ?>
-                            Leia o QR Code para ver os dados do VCard
-                        <?php endif; ?>
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php if($language == 'en') : ?>Close<?php else: ?>Fechar<?php endif; ?></button>
                 </div>
             </div>
         </div>
@@ -209,8 +184,10 @@
                                     <div class="row recent-posts">
                                         <?php while ($recent_posts->have_posts()): $recent_posts->the_post();?>
                                             <div data-expertise="<?php echo get_the_ID(); ?>" class="col-12 border-start border-4 mt-2 mb-2 recent-posts-item">
-                                                <h4><?php echo get_the_title(); ?></h4>
-                                                <span><?php echo get_the_date('d/m/Y'); ?></span>
+                                                <a href="<?php echo get_the_permalink(); ?>">
+                                                    <h4><?php echo get_the_title(); ?></h4>
+                                                    <span><?php echo get_the_date('d/m/Y'); ?></span>
+                                                </a>
                                             </div>
                                         <?php endwhile;?>
                                     </div>

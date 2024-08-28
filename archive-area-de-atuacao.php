@@ -60,8 +60,10 @@
                         <div class="row recent-posts">
                             <?php while ($recent_posts->have_posts()): $recent_posts->the_post();?>
                                 <div data-expertise="<?php echo get_the_ID(); ?>" class="col-12 border-start border-4 mt-2 mb-2 recent-posts-item">
-                                    <h4><?php echo get_the_title(); ?></h4>
-                                    <span><?php echo get_the_date('d/m/Y'); ?></span>
+                                    <a href="<?php echo get_the_permalink(); ?>">
+                                        <h4><?php echo get_the_title(); ?></h4>
+                                        <span><?php echo get_the_date('d/m/Y'); ?></span>
+                                    </a>
                                 </div>
                             <?php endwhile;?>
                         </div>

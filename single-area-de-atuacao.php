@@ -2,6 +2,7 @@
 
     <?php global $post; ?>
     <?php $active = $post->ID; ?>
+    <?php $language = apply_filters( 'wpml_current_language', NULL ); ?>
 
     <?php
         $args = array(

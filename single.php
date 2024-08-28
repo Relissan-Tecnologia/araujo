@@ -60,7 +60,7 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-9">
                     <div class="divider"></div>
-                    <div class="sub-title"><?php if($language === 'en'): ?>Lastest Posts<?php else: ?>Últimas Publicações<?php endif; ?></div>
+                    <div class="sub-title"><?php if($language === 'en'): ?>Related Posts<?php else: ?>Publicações Relacionadas<?php endif; ?></div>
 
                     <div class="posts-lines mb-5">
                         <?php while ($related_posts->have_posts()) : $related_posts->the_post(); ?>

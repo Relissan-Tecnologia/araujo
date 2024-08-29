@@ -1,6 +1,8 @@
 <?php get_header();?>
 <?php $language = apply_filters( 'wpml_current_language', NULL ); ?>
 
+<h1 style="position: absolute; left: -1000px; opacity: 0;">Araújo e Policastro Advogados</h1>
+
 <?php
     $args = array(
         'post_type' => 'banners',

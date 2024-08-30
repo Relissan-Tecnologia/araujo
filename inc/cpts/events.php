@@ -49,7 +49,7 @@ class CPT_Events
             'hierarchical'        => true,
             'menu_position'       => 3,
             'menu_icon'           => 'dashicons-calendar-alt',
-            'supports'            => array( 'title', 'revisions', 'thumbnail' ),
+            'supports'            => array( 'title', 'revisions', 'thumbnail', 'editor' ),
             'show_in_rest'      => true
         );
         
@@ -80,7 +80,7 @@ class CPT_Events
             'show_ui'           => true,
             'show_admin_column' => true,
             'query_var'         => true,
-            'rewrite'           => array('slug' => 'categoria-evento'),
+            'rewrite'           => array('slug' => 'tipos', 'with_front' => false, 'hierarchical' => true),
             'show_in_rest'      => true
         );
 

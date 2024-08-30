@@ -1123,6 +1123,14 @@ ul.list-lawyer-practice-area {
     }
 }
 
+#archive-navigation-top{
+    display: flex;
+    justify-content: flex-end;
+    @media screen and (max-width:991px){
+        display: none !important;
+    }
+}
+
 .archive-navigation{
     display: flex;
     align-items: center;

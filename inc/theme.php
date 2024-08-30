@@ -15,6 +15,7 @@ class Theme {
         add_filter('upload_mimes', array($this, 'cc_mime_types'));
         add_filter('wp_check_filetype_and_ext', array($this, 'check_filetype_and_ext'), 10, 5);
         add_filter('get_the_archive_title', array($this, 'customize_archive_title' ), 10, 3);
+        add_action('pre_get_posts', array($this, 'custom_posts_per_page_for_eventos'), 10, 3 );
 
         // Includes
         $this->cpts = get_template_directory() . '/' . 'inc/cpts/';
@@ -115,6 +116,13 @@ class Theme {
 
         return $title;
     }
+
+    public function custom_posts_per_page_for_eventos( $query ) {
+        if ( !is_admin() && $query->is_main_query() && is_post_type_archive( 'eventos' ) ) {
+            $query->set('posts_per_page', 2 );
+        }
+    }
+
 }
 
 $Theme = new Theme();

@@ -64,13 +64,15 @@
 
     .post-content {
         margin-top: 75px;
-
         color: var(--color-primary-font-light);
         font-family: Roboto;
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        &.remove-mg-top{
+            margin-top: 0 !important;
+        }
 
         h1 {
             color: var(--color-primary-font-light);

@@ -9,78 +9,128 @@
         margin: 0 auto;
     }
 
-    #pills-tab {
-        max-width: 700px;
-        justify-content: space-evenly;
+    .content-max-size{
+        max-width: 820px;
         margin: 0 auto;
-
-        .nav-item {
-            .nav-link.active {
-                background: #F45B06;
+        #pills-tab {
+            max-width: 100%;
+            justify-content: space-between;
+            margin: 0 auto;
+            display: flex;
+            gap: 20px;
+            flex-wrap: nowrap;
+            @media (max-width: 767px){
+                gap: 5px;
             }
+            @media (min-width: 768px){
+                gap: 10px;
+                justify-content: center;
+            }
+            @media (min-width: 992px){
+                gap: 30px;
+            }
+            .nav-item {
+                height: auto;
+                @media (max-width: 420px){
+                    width: 80px;
+                }
 
-            .area {
-                min-width: 147px;
+                @media (min-width: 421px) and (max-width: 991px){
+                    width: 25%;
+                    max-width: 110px;
+                }
 
-                &.active,
-                &:hover {
-                    .area__title {
-                        color: #fff;
+                @media (min-width: 992px){
+                    height: 100px;
+                    min-width: 150px;
+                }
+                .nav-link.active {
+                    background: #F45B06;
+                }
+
+                .area-block {
+                    border: solid thin red;
+                    width: 100%;
+                    position: relative;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 10px;
+                    .area__title{
+                        font-size: 16px;
                     }
-
-                    .area__icon {
-                        filter: invert(1) grayscale(100%) brightness(200%);
+                    &:hover {
+                        background-color: #F45B06;
+                        .area__title {
+                            font-size: 16px;
+                            color: #FFFFFF;
+                        }
+                        .area__icon {
+                            filter: invert(1) grayscale(100%) brightness(200%);
+                        }
+                    }
+                    &.active {
+                        .area__title {
+                            color: #fff;
+                            font-weight: 800;
+                        }
+                        .area__icon {
+                            filter: invert(1) grayscale(100%) brightness(200%);
+                        }
                     }
                 }
             }
         }
-    }
 
-    #pills-tabContent {
-        max-width: 700px;
-        margin: 0 auto;
-        margin-bottom: 40px;
+        #pills-tabContent {
+            max-width: 100%;
+            margin: 0 auto;
+            margin-bottom: 40px;
 
-        p {
-            color: #828282;
-            font-family: Roboto;
-            font-size: 18px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-        }
-
-        .galery {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
-        }
-
-        .files {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-
-            .file {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                
-                text-decoration: none;
-                color: #4F4F4F;
+            p {
+                color: #828282;
                 font-family: Roboto;
-                font-size: 16px;
+                font-size: 18px;
                 font-style: normal;
-                font-weight: 700;
+                font-weight: 400;
                 line-height: normal;
+            }
 
-                span {
+            .galery {
+                display: grid;
+                grid-template-columns: repeat(4,1fr);
+                gap: 5px;
+                justify-items: center;
+                align-items: center;
+            }
+
+            .files {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .file {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    
+                    text-decoration: none;
                     color: #4F4F4F;
                     font-family: Roboto;
                     font-size: 16px;
                     font-style: normal;
                     font-weight: 700;
                     line-height: normal;
+
+                    span {
+                        color: #4F4F4F;
+                        font-family: Roboto;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: normal;
+                    }
                 }
             }
         }
